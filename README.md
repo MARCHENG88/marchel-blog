@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marchel Immanuel Simon</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: 0.3s;
+      background-color: #ffffff;
+      color: #111;
+    }
+
+    /* Aurora Background */
+    .aurora {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a6c);
+      background-size: 400% 400%;
+      animation: auroraMove 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes auroraMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Splash */
+    #splash {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      text-align: center;
+      opacity: 1;
+      transition: 0.5s;
+    }
+
+    #splash h1 {
+      font-size: 22px;
+      margin: 0 20px 20px;
+    }
+
+    #enter-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* Spinner Loading */
+    .spinner {
+      border: 6px solid rgba(255, 255, 255, 0.1);
+      border-top: 6px solid white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Main content */
+    #main-content {
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    header {
+      background: #1e1e1e;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #111;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    .card {
+      background: #f0f0f0;
+      padding: 10px 15px;
+      border-left: 5px solid #555;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #1e1e1e;
+      color: white;
+    }
+
+    /* Link default (light mode) */
+    a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: #121212;
+      color: #ddd;
+    }
+
+    body.dark header,
+    body.dark footer {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    body.dark .card {
+      background: #1a1a1a;
+      border-left-color: #555;
+    }
+
+    body.dark h2 {
+      color: #f0f0f0;
+    }
+
+    body.dark a {
+      color: #ddd;
+    }
+
+    body.dark a:hover {
+      color: #fff;
+    }
+
+    .dark-toggle {
+      background: #333;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      float: right;
+      margin-top: -60px;
+      margin-right: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .dark-toggle {
+        float: none;
+        margin: 10px auto;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Aurora Background -->
+  <div class="aurora"></div>
+
+  <!-- Splash Page -->
+  <div id="splash">
+    <h1>SELAMAT DATANG,<br />di blog Marchel Immanuel Simon</h1>
+    <button id="enter-btn">Masuk</button>
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <header>
+      <h1>Marchel Immanuel Simon</h1>
+      <p>Mahasiswa | Fotografi & Editing</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Tentang Saya</h2>
+        <div class="card">
+          <p>
+            Halo! Saya Marchel, pelajar dari Persada Bhakti yang tinggal di
+            Balikpapan. Saya suka fotografi dan mengedit foto dengan gaya unik.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Hobi</h2>
+        <ul>
+          <li>Fotografi</li>
+          <li>Edit foto dan video</li>
+          <li>Eksperimen preset Lightroom</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tips Lightroom</h2>
+        <div class="card">
+          <p>
+            <strong>📷 Tips:</strong> Coba preset tone hangat di golden hour.
+            Atur highlight -30 dan vibrance +20 untuk nuansa dramatis.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Media Sosial</h2>
+        <p>
+          Instagram:
+          <a href="https://instagram.com/" target="_blank">@marchel_edit</a><br />
+          TikTok:
+          <a href="https://www.tiktok.com/@marchel_simon" target="_blank"
+            >@marchel_simon</a
+          >
+        </p>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 Marchel Immanuel Simon</footer>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    document.getElementById("enter-btn").addEventListener("click", function () {
+      this.style.display = "none";
+      document.querySelector(".spinner").style.display = "block";
+
+      setTimeout(() => {
+        document.getElementById("splash").style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById("splash").style.display = "none";
+          document.getElementById("main-content").style.display = "block";
+        }, 500);
+      }, 2000);
+    });
+  </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marchel Immanuel Simon</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      transition: 0.3s;
+      background-color: #ffffff;
+      color: #111;
+    }
+
+    /* Aurora Background */
+    .aurora {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364, #1a2a6c);
+      background-size: 400% 400%;
+      animation: auroraMove 15s ease infinite;
+      z-index: -1;
+    }
+
+    @keyframes auroraMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Splash */
+    #splash {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      text-align: center;
+      opacity: 1;
+      transition: 0.5s;
+    }
+
+    #splash h1 {
+      font-size: 22px;
+      margin: 0 20px 20px;
+    }
+
+    #enter-btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #444;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* Spinner Loading */
+    .spinner {
+      border: 6px solid rgba(255, 255, 255, 0.1);
+      border-top: 6px solid white;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+      display: none;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* Main content */
+    #main-content {
+      display: none;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    header {
+      background: #1e1e1e;
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #111;
+      border-bottom: 2px solid #444;
+      padding-bottom: 5px;
+    }
+
+    .card {
+      background: #f0f0f0;
+      padding: 10px 15px;
+      border-left: 5px solid #555;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #1e1e1e;
+      color: white;
+    }
+
+    /* Link default (light mode) */
+    a {
+      color: #111;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #333;
+      text-decoration: underline;
+    }
+
+    /* Dark Mode */
+    body.dark {
+      background: #121212;
+      color: #ddd;
+    }
+
+    body.dark header,
+    body.dark footer {
+      background: #1e1e1e;
+      color: white;
+    }
+
+    body.dark .card {
+      background: #1a1a1a;
+      border-left-color: #555;
+    }
+
+    body.dark h2 {
+      color: #f0f0f0;
+    }
+
+    body.dark a {
+      color: #ddd;
+    }
+
+    body.dark a:hover {
+      color: #fff;
+    }
+
+    .dark-toggle {
+      background: #333;
+      color: white;
+      padding: 10px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      float: right;
+      margin-top: -60px;
+      margin-right: 20px;
+    }
+
+    @media (max-width: 600px) {
+      .dark-toggle {
+        float: none;
+        margin: 10px auto;
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Aurora Background -->
+  <div class="aurora"></div>
+
+  <!-- Splash Page -->
+  <div id="splash">
+    <h1>SELAMAT DATANG,<br />di blog Marchel Immanuel Simon</h1>
+    <button id="enter-btn">Masuk</button>
+    <div class="spinner"></div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="main-content">
+    <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+    <header>
+      <h1>Marchel Immanuel Simon</h1>
+      <p>Mahasiswa | Fotografi & Editing</p>
+    </header>
+
+    <main>
+      <section>
+        <h2>Tentang Saya</h2>
+        <div class="card">
+          <p>
+            Halo! Saya Marchel, pelajar dari Persada Bhakti yang tinggal di
+            Balikpapan. Saya suka fotografi dan mengedit foto dengan gaya unik.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Hobi</h2>
+        <ul>
+          <li>Fotografi</li>
+          <li>Edit foto dan video</li>
+          <li>Eksperimen preset Lightroom</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Tips Lightroom</h2>
+        <div class="card">
+          <p>
+            <strong>📷 Tips:</strong> Coba preset tone hangat di golden hour.
+            Atur highlight -30 dan vibrance +20 untuk nuansa dramatis.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <h2>Media Sosial</h2>
+        <p>
+          Instagram:
+          <a href="https://instagram.com/" target="_blank">@marchel_edit</a><br />
+          TikTok:
+          <a href="https://www.tiktok.com/@marchel_simon" target="_blank"
+            >@marchel_simon</a
+          >
+        </p>
+      </section>
+    </main>
+
+    <footer>&copy; 2025 Marchel Immanuel Simon</footer>
+  </div>
+
+  <script>
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark");
+    }
+
+    document.getElementById("enter-btn").addEventListener("click", function () {
+      this.style.display = "none";
+      document.querySelector(".spinner").style.display = "block";
+
+      setTimeout(() => {
+        document.getElementById("splash").style.opacity = 0;
+        setTimeout(() => {
+          document.getElementById("splash").style.display = "none";
+          document.getElementById("main-content").style.display = "block";
+        }, 500);
+      }, 2000);
+    });
+  </script>
+</body>
+</html>
